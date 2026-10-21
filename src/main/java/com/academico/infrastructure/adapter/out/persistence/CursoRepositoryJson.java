@@ -9,7 +9,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CursoRepository {
+public class CursoRepositoryJson {
 
     private final String archivo = "data/cursos.json";
     private final Gson gson = new Gson();

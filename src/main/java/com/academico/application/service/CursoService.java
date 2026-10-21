@@ -1,16 +1,16 @@
 package com.academico.application.service;
 
 import com.academico.domain.model.Curso;
-import com.academico.infrastructure.adapter.out.persistence.CursoRepository;
+import com.academico.infrastructure.adapter.out.persistence.CursoRepositoryJson;
 
 import java.util.List;
 
 public class CursoService {
 
-    private final CursoRepository repository;
+    private final CursoRepositoryJson repository;
 
     public CursoService() {
-        repository = new CursoRepository();
+        repository = new CursoRepositoryJson();
     }
 
     public void registrar(Curso curso) {
