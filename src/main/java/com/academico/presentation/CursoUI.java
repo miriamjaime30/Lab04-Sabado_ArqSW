@@ -39,20 +39,25 @@ public class CursoUI {
             }
         } while (opcion != 0);
     }
-    private void registrar(Scanner sc){
+    private void registrar(Scanner sc) {
         System.out.print("ID: ");
-        int id =sc.nextInt();
+        int id = sc.nextInt();
         sc.nextLine();
 
         System.out.print("Nombre: ");
         String nombre = sc.nextLine();
 
         System.out.print("Créditos: ");
-        int creditos=sc.nextInt();
+        int creditos = sc.nextInt();
         sc.nextLine();
 
-        service.registrar(new Curso(id, nombre, creditos));
-        System.out.println("Curso registrado");
+        try {
+            service.registrar(new Curso(id, nombre, creditos));
+            System.out.println("Curso registrado");
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
     private void listar(){
         service.listar().forEach(c->System.out.println(c.getId()+ "-"+c.getNombre()+"-"+c.getCreditos()+"creditos"));

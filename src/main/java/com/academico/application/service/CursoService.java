@@ -15,6 +15,16 @@ public class CursoService implements CursoUseCase {
 
     @Override
     public void registrar(Curso curso) {
+        if(curso.getCreditos() <= 0){
+            throw new IllegalArgumentException(
+                    "Los creditos deben ser mayores que cero"
+            );
+        }
+        if(repository.buscarPorId(curso.getId()).isPresent()){
+            throw new IllegalArgumentException(
+                    "Ya existe un curso con el ID" + curso.getId()+ " "
+            );
+        }
         repository.guardar(curso);
     }
 
