@@ -17,6 +17,15 @@ public class EstudianteService implements EstudianteUseCase {
 
     @Override
     public void registrar(Estudiante estudiante) {
+        if(repository.buscarPorId(estudiante.getId()).isPresent()){
+            throw new IllegalArgumentException(
+                    "Ya existe un estudiante con el ID "+ estudiante.getId()+ " "
+            );
+        }
+        boolean correoRepetido = repository.listar().stream().anyMatch(e->e.getCorreo().equalsIgnoreCase(estudiante.getCorreo()));
+        if (correoRepetido){
+            throw new IllegalArgumentException("Ya existe un estudiante con el mismo correo"+ estudiante.getCorreo()+ " ");
+        }
         repository.guardar(estudiante);
     }
 

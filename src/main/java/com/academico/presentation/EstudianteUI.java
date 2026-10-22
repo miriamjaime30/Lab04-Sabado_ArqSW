@@ -58,12 +58,13 @@ public class EstudianteUI {
         System.out.print("Correo: ");
         String correo = sc.nextLine();
 
-        Estudiante estudiante =
-                new Estudiante(id, nombre, correo);
-        service.registrar(estudiante);
+        try{
+            service.registrar(new Estudiante(id, nombre, correo));
+            System.out.println("Estudiante registrado");
 
-        System.out.println("Estudiante registrado.");
-
+        }catch (IllegalArgumentException e){
+            System.out.println("Error: "+ e.getMessage());
+        }
     }
     private void listar(){
         service.listar().forEach(e ->
